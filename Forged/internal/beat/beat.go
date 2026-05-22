@@ -1,8 +1,7 @@
-package main
+package beat
 
 import (
 	"math/rand"
-	"time"
 )
 
 type Beat struct {
@@ -34,12 +33,20 @@ var suffixes = []string{
 }
 
 func GenerateBeat() Beat {
-	rand.Seed(time.Now().UnixNano())
+	//rand.Seed(time.Now().UnixNano())
 	genre := genres[rand.Intn(len(genres))]
 	mood := moods[rand.Intn(len(moods))]
 	prefix := prefixes[rand.Intn(len(prefixes))]
 	suffix := suffixes[rand.Intn(len(suffixes))]
 
+	bpm := 70 + rand.Intn(90)
 	name := prefix + " " + suffix
+
+	return Beat{
+		Name:  name,
+		Genre: genre,
+		Mood:  mood,
+		BPM:   bpm,
+	}
 
 }
